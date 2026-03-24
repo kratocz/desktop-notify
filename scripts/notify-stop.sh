@@ -5,3 +5,4 @@ source "$(dirname "$0")/lib.sh"
 
 PROJECT=$(basename "$PWD")
 notify "Claude Code – $PROJECT" "Waiting for your response"
+exit 0

@@ -10,3 +10,4 @@ DETAIL=$(echo "$DATA" | jq -r '(.tool_input.command // .tool_input.file_path // 
 PROJECT=$(basename "$PWD")
 
 notify "Claude Code – $PROJECT" "Approval: $TOOL${DETAIL:+: $DETAIL}" "critical"
+exit 0

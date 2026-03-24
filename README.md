@@ -17,29 +17,52 @@ Never miss a paused session again — get notified even when you're in another w
 
 Each notification includes the **project name** in the title so you always know which Claude Code session needs attention.
 
+## Configuration
+
+Set `DESKTOP_NOTIFY_METHOD` in your `~/.claude/settings.json` to choose how you're notified:
+
+```json
+{
+  "env": {
+    "DESKTOP_NOTIFY_METHOD": "visual"
+  }
+}
+```
+
+| Value | Behavior |
+|---|---|
+| `visual` | Desktop notification popup *(default)* |
+| `sound` | Text-to-speech reads the project name and message aloud |
+| `both` | Visual notification + TTS simultaneously |
+
 ## Requirements
 
-| Platform | Dependencies |
-|---|---|
-| Linux | `notify-send` (libnotify) + `jq` |
-| macOS | `jq` (notifications via built-in `osascript`) |
-| Windows | Not supported yet |
+| Platform | `visual` | `sound` |
+|---|---|---|
+| Linux | `notify-send` (libnotify) + `jq` | `spd-say`, `espeak-ng`, or `espeak` |
+| macOS | `jq` (notifications via built-in `osascript`) | built-in `say` |
+| Windows | Not supported yet | Not supported yet |
 
 ### Install dependencies
 
 **Ubuntu / Debian:**
 ```bash
 sudo apt install libnotify-bin jq
+# for sound:
+sudo apt install speech-dispatcher  # provides spd-say
 ```
 
 **Fedora / RHEL:**
 ```bash
 sudo dnf install libnotify jq
+# for sound:
+sudo dnf install speech-dispatcher
 ```
 
 **macOS:**
 ```bash
 brew install jq
+# sound uses built-in 'say' — no extra dependencies
 ```
 
 ## Installation
